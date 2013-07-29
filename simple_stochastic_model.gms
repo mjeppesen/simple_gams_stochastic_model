@@ -13,6 +13,8 @@ parameters
         hydro 0
         thermal 15/;
 
+scalar demand /1/;
+
 variables
     z
     plants_built(plants)
@@ -32,7 +34,7 @@ objective..
         sum(plants, opex(plants) * generation(plants));
 
 meet_demand..
-    sum(plants, generation(plants)) =e= 1;
+    sum(plants, generation(plants)) =e= demand;
 
 max_gen(plants)..
     generation(plants) =l= plants_built(plants);
